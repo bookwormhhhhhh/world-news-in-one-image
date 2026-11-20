@@ -371,7 +371,8 @@ def panel(cv, px, py, cat, color, icon, headline, sub):
     for ln in headline:
         draw_text(cv, px + 16, hy, ln, 3, INK, bold=True)
         hy += 32
-    draw_text(cv, px + 16, hy + 8, sub, 2, GRAY)
+    fill_rect(cv, px + 16, hy + 1, 60, 3, GOLD)   # gold rule above the standfirst
+    draw_text(cv, px + 16, hy + 10, sub, 2, GRAY)
 
 
 def main():
@@ -388,6 +389,11 @@ def main():
     fill_rect(cv, 28, 190, W - 56, 100, NAVY)
     center_text(cv, 512, 204, "19 NOVEMBER 2026", 8, WHITE, bold=True)
     center_text(cv, 512, 268, "T H U R S D A Y", 2, GOLD)
+    tw = text_width("T H U R S D A Y", 2)          # gold rules flanking the weekday
+    fill_rect(cv, 512 - tw // 2 - 92, 274, 64, 3, GOLD)
+    fill_rect(cv, 512 + tw // 2 + 28, 274, 64, 3, GOLD)
+    # Dateline strip: where the day's four stories happened
+    center_text(cv, 512, 292, "THE HAGUE - SHENZHEN - DEEP SPACE - VICE CITY", 2, GRAY)
     # Panels, 2 x 2
     pos = [(28, 308), (520, 308), (28, 653), (520, 653)]
     for (px, py), args in zip(pos, PANELS):
